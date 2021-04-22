@@ -9,12 +9,14 @@ MyController _controller = Get.put(MyController());
 class References extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.height;
+    double _height = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(),
         body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: _height,
+          width: _width,
           child: ListView(
             children: [
               Container(
