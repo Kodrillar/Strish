@@ -9,8 +9,8 @@ class WelcomePage extends StatelessWidget {
   final TextEditingController welcomeControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.height;
-    double _height = MediaQuery.of(context).size.width;
+    double _width = MediaQuery.of(context).size.width;
+    double _height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         body: Container(
