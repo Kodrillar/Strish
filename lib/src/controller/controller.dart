@@ -1,5 +1,4 @@
 import 'package:flutter/gestures.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:strish/src/model/trivia_vault_model.dart';
 import 'package:get/get.dart';
@@ -37,10 +36,11 @@ class MyController extends GetxController {
   }
 
   launchReference() {
+    final url = Uri.parse(_triv.trivia[_index.value].reference);
     return TapGestureRecognizer()
       ..onTap = () async {
-        if (await canLaunch(_triv.trivia[_index.value].reference)) {
-          await launch(_triv.trivia[_index.value].reference);
+        if (await canLaunchUrl(url)) {
+          await launchUrl(url);
         } else
           throw 'Url can\'t be launced';
       };
@@ -72,8 +72,8 @@ class MyController extends GetxController {
   }
 
   openUrl(url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else
       throw 'Url can\'t be launced';
   }

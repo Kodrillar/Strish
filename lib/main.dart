@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(fontFamily: 'Raleway', color: Colors.white),
           bodyText1: TextStyle(fontFamily: 'Raleway'),
         ),
-        accentColor: kLightPurple,
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              secondary: kLightPurple,
+            ),
         primaryColor: kLightPurple,
       ),
       home: WelcomePage(),
