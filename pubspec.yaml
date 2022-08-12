@@ -16,7 +16,7 @@ dependencies:
 
   
   cupertino_icons: ^1.0.2
-  get: 4.1.1
+  get: ^4.6.5
   url_launcher: ^6.0.3
   audioplayers: ^0.18.3
 

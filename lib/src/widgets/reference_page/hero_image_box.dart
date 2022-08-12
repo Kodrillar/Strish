@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
 
-class HeroBox extends StatelessWidget {
-  const HeroBox({Key? key}) : super(key: key);
+class HeroImageBox extends StatelessWidget {
+  const HeroImageBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,9 @@ class HeroBox extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         image: DecorationImage(
-            image: AssetImage('assets/images/kehlani.png'), fit: BoxFit.cover),
+          image: AssetImage('assets/images/kehlani.png'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

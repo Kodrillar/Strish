@@ -10,15 +10,19 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         textTheme: TextTheme(
-          bodyText2: TextStyle(fontFamily: 'Raleway', color: Colors.white),
+          bodyText2: TextStyle(
+            fontFamily: 'Raleway',
+            color: Colors.white,
+          ),
           bodyText1: TextStyle(
             fontFamily: 'Raleway',
           ),
         ),
         colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: kDeepPurple,
               secondary: kLightPurple,
             ),
-        primaryColor: Colors.amber,
+        // primaryColor: kDeepPurple,
       ),
       home: WelcomePage(),
       debugShowCheckedModeBanner: false,

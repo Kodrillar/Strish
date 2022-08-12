@@ -20,9 +20,9 @@ class TriviaController extends GetxController {
 
   List retrieveOptions() => TriviaModel.trivia[_index.value].imageOptions;
 
-  scoreLogic(imageAnswer) {
-    if (imageAnswer == retrieveAnswer()) {
-      return _score.value++;
+  void scoreLogic(selectedImage) {
+    if (selectedImage == retrieveAnswer()) {
+      _score.value++;
     }
   }
 
@@ -45,23 +45,23 @@ class TriviaController extends GetxController {
       };
   }
 
-  retrieveReference(imgg) {
-    if (imgg == retrieveAnswer()) {
+  String retrieveReference(selectedImage) {
+    if (selectedImage == retrieveAnswer()) {
       return 'Reference';
     } else
       return '';
   }
 
-  retrieveImageAnswer(img) {
-    if (img == retrieveAnswer()) {
+  String retrieveImageAnswer(selectedImage) {
+    if (selectedImage == retrieveAnswer()) {
       return 'assets/images/correct.png';
     } else
       return 'assets/images/wrong.png';
   }
 
-  retrieveNextQuestion() {
+  void retrieveNextQuestion() {
     if (_index <= TriviaModel.trivia.length - 2) {
-      return _index.value++;
+      _index.value++;
     }
   }
 
@@ -70,7 +70,7 @@ class TriviaController extends GetxController {
     _score.value = 0;
   }
 
-  openUrl(String url) async {
+  void openUrl(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);

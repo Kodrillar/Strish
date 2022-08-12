@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:strish/src/model/trivia_vault_model.dart';
 import 'package:strish/src/widgets/drawer_text.dart';
 import 'package:strish/src/views/answer_page.dart';
 import 'package:strish/src/controller/trivia_controller.dart';
@@ -22,29 +26,34 @@ class Home extends StatelessWidget {
       onWillPop: () async {
         return false;
       },
-      child: SafeArea(
-        child: Scaffold(
-          drawer: _drawer(),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    topConatiner(),
-                    iconStack(),
-                    helloContainer(),
-                    nameContainer(),
-                    questionContainer(),
-                    circleDesign(),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                pictureOptions(),
-                questionNumberButton(),
-              ],
+      child: Scaffold(
+        drawer: _drawer(),
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: Platform.isAndroid
+              ? SystemUiOverlayStyle.light
+              : SystemUiOverlayStyle.dark,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      topConatiner(),
+                      iconStack(),
+                      helloContainer(),
+                      nameContainer(),
+                      questionContainer(),
+                      circleDesign(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  pictureOptions(),
+                  questionNumberButton(),
+                ],
+              ),
             ),
           ),
         ),
@@ -117,7 +126,7 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-            _myController.questionIndex > 7
+            _myController.questionIndex > 6
                 ? DrawerText(
                     text: 'References',
                     icon: Icons.ad_units_sharp,
@@ -156,7 +165,7 @@ class Home extends StatelessWidget {
                     image: 'assets/images/instagram.png',
                     onTap: () {
                       _myController
-                          .openUrl('https://www.instagram.com/kodrillar');
+                          .openUrl('https://www.instagram.com/bonzerdave');
                     },
                   )
                 ],
@@ -248,8 +257,8 @@ class Home extends StatelessWidget {
             children: _myController
                 .retrieveOptions()
                 .map(
-                  (img) => Hero(
-                    tag: '$img',
+                  (imageOptions) => Hero(
+                    tag: '$imageOptions',
                     child: Container(
                       margin: EdgeInsets.all(15),
                       width: 100,
@@ -264,7 +273,7 @@ class Home extends StatelessWidget {
                           ),
                         ],
                         image: DecorationImage(
-                            image: AssetImage(img), fit: BoxFit.cover),
+                            image: AssetImage(imageOptions), fit: BoxFit.cover),
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -272,17 +281,19 @@ class Home extends StatelessWidget {
                             CupertinoPageRoute(
                               builder: (BuildContext context) {
                                 return AnswerPage(
-                                  image: img,
+                                  image: imageOptions,
                                 );
                               },
                             ),
                           );
-                          _myController.scoreLogic(img);
+
+                          _myController.scoreLogic(imageOptions);
 
                           //To play sound on app only, not supported for web
                           // _myController.playSound(img);
-                          if (_myController.questionIndex == 13) {
-                            return myAlertDialog(context);
+                          if (_myController.questionIndex ==
+                              TriviaModel.trivia.length - 1) {
+                            myAlertDialog(context);
                           }
                         },
                       ),
@@ -325,7 +336,7 @@ class Home extends StatelessWidget {
   Widget questionNumberButton() {
     return Obx(
       () => GradientButton(
-        buttonName: '${_myController.questionIndex}/13',
+        buttonName: '${_myController.questionIndex + 1}/13',
         font: 'Days',
         fontSize: 30,
       ),

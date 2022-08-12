@@ -101,7 +101,7 @@ class TriviaModel {
     ),
     Question(
       question:
-          'Before she became successful, she used to scrub toilets while she was simultaneously stripping.',
+          'Before she became successful, she used to scrub bathrooms whilst being a stripper.',
       answerImage: 'assets/images/sumwalker.jpg',
       reference: 'https://en.wikipedia.org/wiki/Summer_Walker',
       imageOptions: [

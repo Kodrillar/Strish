@@ -17,48 +17,48 @@ class AnswerPage extends StatelessWidget {
       onWillPop: () async {
         return false;
       },
-      child: SafeArea(
-        child: Scaffold(
-          appBar: myAppBar(),
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    kLightPurple,
-                    kDeepPurple,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+      child: Scaffold(
+        appBar: myAppBar(
+          context,
+        ),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  kLightPurple,
+                  kDeepPurple,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.only(
-                    top: 60,
-                    left: 10,
-                    right: 10,
-                    bottom: 20,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      imageAvatar(),
-                      answerPicture(),
-                      reference(),
-                      continueButton(),
-                    ],
-                  ),
-                  height: 450,
-                  width: 340,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
+            ),
+            child: SingleChildScrollView(
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: 60,
+                  left: 10,
+                  right: 10,
+                  bottom: 20,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    imageAvatar(),
+                    answerPicture(),
+                    reference(),
+                    continueButton(),
+                  ],
+                ),
+                height: 450,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -68,19 +68,17 @@ class AnswerPage extends StatelessWidget {
     );
   }
 
-  myAppBar() {
+  myAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: kLightPurple,
       elevation: 0.0,
-      leading: Builder(
-        builder: (BuildContext context) => IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-            _myController.scoreLogic(image);
-            _myController.retrieveNextQuestion();
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+          _myController.scoreLogic(image);
+          _myController.retrieveNextQuestion();
+        },
+        icon: Icon(Icons.arrow_back_ios),
       ),
     );
   }
@@ -94,7 +92,10 @@ class AnswerPage extends StatelessWidget {
           height: 130,
           width: 140,
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.cover,
+            ),
             shape: BoxShape.circle,
             border: Border.all(
               color: Colors.white,
