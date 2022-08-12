@@ -1,7 +1,7 @@
 import 'question_model.dart';
 
-class Trivia {
-  List<Question> trivia = [
+class TriviaModel {
+  static List<Question> trivia = [
     Question(
       question:
           'His childhood home was usually a mess with computers, science & technology magazines.',

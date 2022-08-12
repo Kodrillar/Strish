@@ -1,4 +1,4 @@
-import 'package:strish/src/views/home.dart';
+import 'package:strish/src/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:strish/src/widgets/gradient_button.dart';
 import 'package:strish/src/utils/constants.dart';

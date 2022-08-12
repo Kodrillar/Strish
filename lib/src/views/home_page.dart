@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:strish/src/widgets/drawer_text.dart';
 import 'package:strish/src/views/answer_page.dart';
-import 'package:strish/src/controller/controller.dart';
-import 'package:strish/src/views/references.dart';
+import 'package:strish/src/controller/trivia_controller.dart';
+import 'package:strish/src/views/references_page.dart';
 import 'package:strish/src/views/welcome_page.dart';
 import 'package:strish/src/widgets/gradient_button.dart';
 import 'package:strish/src/widgets/border_button.dart';
@@ -10,7 +10,7 @@ import 'package:strish/src/utils/constants.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-MyController _myController = Get.put(MyController());
+TriviaController _myController = Get.put(TriviaController());
 
 class Home extends StatelessWidget {
   Home({required this.userName});
@@ -86,75 +86,86 @@ class Home extends StatelessWidget {
 
   Drawer _drawer() {
     return Drawer(
-        child: Builder(
-      builder: (BuildContext context) => ListView(
-        children: [
-          Container(
-            height: 250,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8, top: 60, right: 130),
-              child: Column(
+      child: Builder(
+        builder: (BuildContext context) => ListView(
+          children: [
+            Container(
+              height: 250,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8, top: 60, right: 130),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.supervised_user_circle,
+                      size: 60,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      userName,
+                      style: kUserNameStyle,
+                    )
+                  ],
+                ),
+              ),
+              decoration: BoxDecoration(
+                gradient: kGradient,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(70),
+                ),
+              ),
+            ),
+            _myController.questionIndex > 7
+                ? DrawerText(
+                    text: 'References',
+                    icon: Icons.ad_units_sharp,
+                    onpress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ReferencePage(),
+                        ),
+                      );
+                    },
+                  )
+                : SizedBox(),
+            DrawerText(
+              text: 'Developer :',
+              icon: Icons.developer_mode,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 65),
+              child: Row(
                 children: [
-                  Icon(
-                    Icons.supervised_user_circle,
-                    size: 60,
-                    color: Colors.white,
+                  buildSocial(
+                    image: 'assets/images/git.png',
+                    onTap: () {
+                      _myController.openUrl('https://github.com/Kodrillar');
+                    },
                   ),
-                  SizedBox(
-                    height: 15,
+                  buildSocial(
+                    image: 'assets/images/facebook.png',
+                    onTap: () {
+                      _myController.openUrl(
+                          'https://www.facebook.com/david.ipadeola.965');
+                    },
                   ),
-                  Text(
-                    userName,
-                    style: kUserNameStyle,
+                  buildSocial(
+                    image: 'assets/images/instagram.png',
+                    onTap: () {
+                      _myController
+                          .openUrl('https://www.instagram.com/kodrillar');
+                    },
                   )
                 ],
               ),
             ),
-            decoration: BoxDecoration(
-              gradient: kGradient,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(70),
-              ),
-            ),
-          ),
-          _myController.retrieveQuestionNo() > 7
-              ? DrawerText(
-                  text: 'References',
-                  icon: Icons.ad_units_sharp,
-                  onpress: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => References(),
-                      ),
-                    );
-                  },
-                )
-              : SizedBox(),
-          DrawerText(
-            text: 'Developer :',
-            icon: Icons.developer_mode,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 65),
-            child: Row(
-              children: [
-                buildSocial('assets/images/git.png', () {
-                  _myController.openUrl('https://github.com/Kodrillar');
-                }),
-                buildSocial('assets/images/facebook.png', () {
-                  _myController
-                      .openUrl('https://www.facebook.com/david.ipadeola.965');
-                }),
-                buildSocial('assets/images/instagram.png', () {
-                  _myController.openUrl('https://www.instagram.com/kold_tunez');
-                })
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 
   Widget helloContainer() {
@@ -210,8 +221,8 @@ class Home extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 90.0, bottom: 10, top: 5),
       child: Center(
-          child: GetX<MyController>(
-        init: MyController(),
+          child: GetX<TriviaController>(
+        init: TriviaController(),
         builder: (_mycontrol) {
           return Text(
             _mycontrol.retrieveQuestion(),
@@ -228,65 +239,66 @@ class Home extends StatelessWidget {
   Widget pictureOptions() {
     return Builder(
       builder: (BuildContext context) => Container(
-          margin: EdgeInsets.only(top: 160),
-          height: 190,
-          child: Obx(
-            () => ListView(
-              physics: ScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              children: _myController
-                  .retrieveOptions()
-                  .map(
-                    (img) => Hero(
-                      tag: '$img',
-                      child: Container(
-                        margin: EdgeInsets.all(15),
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 8,
-                              offset: Offset(0, 4),
-                              color: Colors.grey.withOpacity(.4),
-                              spreadRadius: 4,
+        margin: EdgeInsets.only(top: 160),
+        height: 190,
+        child: Obx(
+          () => ListView(
+            physics: ScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            children: _myController
+                .retrieveOptions()
+                .map(
+                  (img) => Hero(
+                    tag: '$img',
+                    child: Container(
+                      margin: EdgeInsets.all(15),
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 8,
+                            offset: Offset(0, 4),
+                            color: Colors.grey.withOpacity(.4),
+                            spreadRadius: 4,
+                          ),
+                        ],
+                        image: DecorationImage(
+                            image: AssetImage(img), fit: BoxFit.cover),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            CupertinoPageRoute(
+                              builder: (BuildContext context) {
+                                return AnswerPage(
+                                  image: img,
+                                );
+                              },
                             ),
-                          ],
-                          image: DecorationImage(
-                              image: AssetImage(img), fit: BoxFit.cover),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              CupertinoPageRoute(
-                                builder: (BuildContext context) {
-                                  return AnswerPage(
-                                    image: img,
-                                  );
-                                },
-                              ),
-                            );
-                            _myController.scoreLogic(img);
+                          );
+                          _myController.scoreLogic(img);
 
-                            //To play sound on app only, not supported for web
-                            // _myController.playSound(img);
-                            if (_myController.retrieveQuestionNo() == 13) {
-                              return myAlertDialog(context);
-                            }
-                          },
-                        ),
+                          //To play sound on app only, not supported for web
+                          // _myController.playSound(img);
+                          if (_myController.questionIndex == 13) {
+                            return myAlertDialog(context);
+                          }
+                        },
                       ),
                     ),
-                  )
-                  .toList(),
-            ),
-          )),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ),
     );
   }
 
-  buildSocial(String image, void Function() onTapp) {
+  buildSocial({required String image, required void Function() onTap}) {
     return GestureDetector(
-      onTap: onTapp,
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.all(7),
         height: 30,
@@ -301,7 +313,10 @@ class Home extends StatelessWidget {
               spreadRadius: 1,
             )
           ],
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -310,7 +325,7 @@ class Home extends StatelessWidget {
   Widget questionNumberButton() {
     return Obx(
       () => GradientButton(
-        buttonName: '${_myController.retrieveQuestionNo()}/13',
+        buttonName: '${_myController.questionIndex}/13',
         font: 'Days',
         fontSize: 30,
       ),
@@ -349,7 +364,7 @@ class Home extends StatelessWidget {
             Obx(
               () => Center(
                 child: Text(
-                  'Your Score: ${_myController.retrieveScore()}/13',
+                  'Your Score: ${_myController.userScore}/13',
                   style: kTextStyle.copyWith(
                       color: Colors.white,
                       fontSize: 20,

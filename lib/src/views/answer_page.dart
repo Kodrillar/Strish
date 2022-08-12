@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:strish/src/widgets/gradient_button.dart';
 import 'package:strish/src/utils/constants.dart';
-import 'package:strish/src/controller/controller.dart';
+import 'package:strish/src/controller/trivia_controller.dart';
 import 'package:get/get.dart';
 
-MyController _myController = Get.put(MyController());
+TriviaController _myController = Get.put(TriviaController());
 
 class AnswerPage extends StatelessWidget {
   AnswerPage({required this.image});

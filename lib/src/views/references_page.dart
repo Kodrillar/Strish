@@ -1,73 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:strish/src/utils/constants.dart';
-import 'package:strish/src/controller/controller.dart';
-import 'package:strish/src/model/references_model.dart';
+import 'package:strish/src/controller/trivia_controller.dart';
+import 'package:strish/src/model/reference_model.dart';
+import 'package:strish/src/widgets/reference_page/app_bar.dart';
+import 'package:strish/src/widgets/reference_page/hero_box.dart';
 
-MyController _controller = Get.put(MyController());
+TriviaController _controller = Get.put(TriviaController());
 
-class References extends StatelessWidget {
+class ReferencePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.height;
-    double _height = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        appBar: buildAppBar(),
-        body: Container(
-          height: _height,
-          width: _width,
-          child: ListView(
-            children: [
-              Container(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      colors: [
-                        kLightPurple.withOpacity(.2),
-                        kDeepPurple.withOpacity(.5),
-                      ],
-                    ),
-                  ),
-                ),
-                margin: EdgeInsets.all(8),
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/kehlani.png'),
-                      fit: BoxFit.cover),
-                ),
-              ),
-              for (var ref in references)
-                BuildRefs(onTapp: ref.onTapp!, name: ref.name!),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      title: Text(
-        'References',
-        style: kTextStyle,
-      ),
-      leading: Builder(
-        builder: (BuildContext context) => IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: kDeepPurple,
-          ),
-          color: Colors.transparent,
+        appBar: ReferenceAppBar(),
+        body: ListView(
+          children: [
+            HeroBox(),
+            for (var ref in references)
+              BuildRefs(onTapp: ref.onTapp!, name: ref.name!),
+          ],
         ),
       ),
     );
@@ -167,8 +119,9 @@ List<Reference> references = [
         _controller.openUrl('https://en.wikipedia.org/wiki/Bill_Gate');
       }),
   Reference(
-      name: 'Warren Buffet',
-      onTapp: () {
-        _controller.openUrl('https://en.wikipedia.org/wiki/Warren_Buffet');
-      }),
+    name: 'Warren Buffet',
+    onTapp: () {
+      _controller.openUrl('https://en.wikipedia.org/wiki/Warren_Buffet');
+    },
+  ),
 ];
