@@ -6,7 +6,9 @@ import 'package:strish/src/views/welcome_page.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: kLightPurple),
+    SystemUiOverlayStyle(
+      statusBarColor: kLightPurple,
+    ),
   );
 
   runApp(MyApp());
@@ -19,12 +21,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: TextTheme(
           bodyText2: TextStyle(fontFamily: 'Raleway', color: Colors.white),
-          bodyText1: TextStyle(fontFamily: 'Raleway'),
+          bodyText1: TextStyle(
+            fontFamily: 'Raleway',
+          ),
         ),
         colorScheme: Theme.of(context).colorScheme.copyWith(
               secondary: kLightPurple,
             ),
-        primaryColor: kLightPurple,
+        primaryColor: Colors.amber,
       ),
       home: WelcomePage(),
       debugShowCheckedModeBanner: false,
