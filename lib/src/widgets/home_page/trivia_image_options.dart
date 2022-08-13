@@ -7,7 +7,7 @@ import '../../model/trivia_vault_model.dart';
 import '../../views/answer_page.dart';
 import '../trivia_alert_dialog.dart';
 
-TriviaController _myController = Get.put(TriviaController());
+TriviaController _triviaController = Get.put(TriviaController());
 
 class TriviaImageOptions extends StatelessWidget {
   const TriviaImageOptions({
@@ -26,7 +26,7 @@ class TriviaImageOptions extends StatelessWidget {
         () => ListView(
           physics: ScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          children: _myController
+          children: _triviaController
               .retrieveOptions()
               .map(
                 (imageOptions) => Hero(
@@ -59,11 +59,11 @@ class TriviaImageOptions extends StatelessWidget {
                           ),
                         );
 
-                        _myController.incrementUserScore(imageOptions);
+                        _triviaController.incrementUserScore(imageOptions);
 
                         //To play sound on app only, not supported for web
                         // _myController.playSound(img);
-                        if (_myController.questionIndex ==
+                        if (_triviaController.questionIndex ==
                             TriviaModel.trivia.length - 1) {
                           showTriviaCompleteDialog(context);
                         }

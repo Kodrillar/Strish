@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../controller/trivia_controller.dart';
 
-TriviaController _controller = Get.put(TriviaController());
+TriviaController _triviaController = Get.put(TriviaController());
 
 class ReferenceModel {
   ReferenceModel({required this.name, required this.onPressed});
@@ -13,74 +13,78 @@ class ReferenceModel {
     ReferenceModel(
         name: 'Bill Gate',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Bill_Gate');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Bill_Gate');
         }),
     ReferenceModel(
         name: 'Jeff Bezos',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Jeff_Bezos');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Jeff_Bezos');
         }),
     ReferenceModel(
         name: 'Elon Musk',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Elon_Musk');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Elon_Musk');
         }),
     ReferenceModel(
         name: 'Larry Page',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Larry_Page');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Larry_Page');
         }),
     ReferenceModel(
         name: 'Doja Cat',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Doja_Cat');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Doja_Cat');
         }),
     ReferenceModel(
         name: 'Summer Walker',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Summer_Walker');
+          _triviaController
+              .openUrl('https://en.wikipedia.org/wiki/Summer_Walker');
         }),
     ReferenceModel(
         name: 'Rihanna',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Rihanna');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Rihanna');
         }),
     ReferenceModel(
         name: 'Jackie Chan',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Jackie_Chan');
+          _triviaController
+              .openUrl('https://en.wikipedia.org/wiki/Jackie_Chan');
         }),
     ReferenceModel(
         name: 'Denzel Washington',
         onPressed: () {
-          _controller
+          _triviaController
               .openUrl('https://en.wikipedia.org/wiki/Denzel_Washington');
         }),
     ReferenceModel(
         name: 'Ronaldo',
         onPressed: () {
-          _controller
+          _triviaController
               .openUrl('https://en.wikipedia.org/wiki/Cristiano_Ronaldo');
         }),
     ReferenceModel(
         name: 'Burna Boy',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Burna_Boy');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Burna_Boy');
         }),
     ReferenceModel(
         name: 'Keanu Reeves',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Keanu_Reeves');
+          _triviaController
+              .openUrl('https://en.wikipedia.org/wiki/Keanu_Reeves');
         }),
     ReferenceModel(
         name: 'Bill Gate',
         onPressed: () {
-          _controller.openUrl('https://en.wikipedia.org/wiki/Bill_Gate');
+          _triviaController.openUrl('https://en.wikipedia.org/wiki/Bill_Gate');
         }),
     ReferenceModel(
       name: 'Warren Buffet',
       onPressed: () {
-        _controller.openUrl('https://en.wikipedia.org/wiki/Warren_Buffet');
+        _triviaController
+            .openUrl('https://en.wikipedia.org/wiki/Warren_Buffet');
       },
     ),
   ];

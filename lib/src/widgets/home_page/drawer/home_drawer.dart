@@ -7,7 +7,7 @@ import '../../../utils/constants.dart';
 import '../../../views/references_page.dart';
 import 'drawer_text.dart';
 
-TriviaController _myController = Get.put(TriviaController());
+TriviaController _triviaController = Get.put(TriviaController());
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({
@@ -50,7 +50,7 @@ class HomeDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            _myController.questionIndex > 6
+            _triviaController.questionIndex > 6
                 ? DrawerText(
                     text: 'References',
                     icon: Icons.ad_units_sharp,
@@ -75,20 +75,20 @@ class HomeDrawer extends StatelessWidget {
                   SocialMediaBox(
                     logoName: 'assets/images/git.png',
                     onPressed: () {
-                      _myController.openUrl('https://github.com/Kodrillar');
+                      _triviaController.openUrl('https://github.com/Kodrillar');
                     },
                   ),
                   SocialMediaBox(
                     logoName: 'assets/images/facebook.png',
                     onPressed: () {
-                      _myController.openUrl(
+                      _triviaController.openUrl(
                           'https://www.facebook.com/david.ipadeola.965');
                     },
                   ),
                   SocialMediaBox(
                     logoName: 'assets/images/instagram.png',
                     onPressed: () {
-                      _myController
+                      _triviaController
                           .openUrl('https://www.instagram.com/bonzerdave');
                     },
                   )

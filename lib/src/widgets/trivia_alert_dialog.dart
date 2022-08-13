@@ -7,7 +7,7 @@ import '../utils/constants.dart';
 import '../views/home_page.dart';
 import '../views/welcome_page.dart';
 
-TriviaController _myController = Get.put(TriviaController());
+TriviaController _triviaController = Get.put(TriviaController());
 
 class TriviaCompleteAlertDialog extends StatelessWidget {
   const TriviaCompleteAlertDialog({
@@ -39,7 +39,7 @@ class TriviaCompleteAlertDialog extends StatelessWidget {
             Obx(
               () => Center(
                 child: Text(
-                  'Your Score: ${_myController.userScore}/13',
+                  'Your Score: ${_triviaController.userScore}/13',
                   style: kTextStyle.copyWith(
                       color: Colors.white,
                       fontSize: 20,
@@ -63,7 +63,7 @@ class TriviaCompleteAlertDialog extends StatelessWidget {
                       ),
                     );
 
-                    _myController.restartTrivia();
+                    _triviaController.restartTrivia();
                   },
                 ),
                 SizedBox(
@@ -76,7 +76,7 @@ class TriviaCompleteAlertDialog extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) => WelcomePage()));
-                    _myController.restartTrivia();
+                    _triviaController.restartTrivia();
                   },
                 )
               ],
