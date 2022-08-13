@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'utils/constants.dart';
 import 'views/welcome_page.dart';
 
-class MyApp extends StatelessWidget {
+class StrishApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

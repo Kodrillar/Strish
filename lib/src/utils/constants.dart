@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kLightPurple = Color(0xFFBD7DDE);
-
+const Color kErrorColor = Colors.red;
 const Color kDeepPurple = Color(0xFF5a4dbd);
 const Gradient kGradient = LinearGradient(
   stops: [-.1, .8],
@@ -19,7 +19,7 @@ const kTextStyle = TextStyle(
   fontFamily: 'Raleway',
 );
 
-const kUserNameStyle = TextStyle(
+const kUserNameTextStyle = TextStyle(
   fontFamily: 'Days',
   fontSize: 30,
   color: Colors.white,

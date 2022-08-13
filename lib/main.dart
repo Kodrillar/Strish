@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:strish/src/utils/constants.dart';
@@ -5,11 +7,30 @@ import 'package:strish/src/utils/constants.dart';
 import 'src/app.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: kLightPurple,
-    ),
-  );
+  runZonedGuarded(() {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: kLightPurple,
+      ),
+    );
 
-  runApp(MyApp());
+    runApp(StrishApp());
+
+    FlutterError.onError = (FlutterErrorDetails errorDetails) {
+      FlutterError.presentError(errorDetails);
+    };
+
+    ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+      return Container(
+        color: kErrorColor,
+        child: Center(
+          child: Text(
+            errorDetails.toString(),
+          ),
+        ),
+      );
+    };
+  }, ((error, stack) {
+    debugPrint(error.toString());
+  }));
 }

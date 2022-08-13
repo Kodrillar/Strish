@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:strish/src/widgets/gradient_button.dart';
 import 'package:strish/src/utils/constants.dart';
-import 'package:strish/src/controller/trivia_controller.dart';
-import 'package:get/get.dart';
-
-TriviaController _myController = Get.put(TriviaController());
+import 'package:strish/src/widgets/answer_page/answer_picture.dart';
+import 'package:strish/src/widgets/answer_page/app_bar.dart';
+import 'package:strish/src/widgets/answer_page/flow_gradient_button.dart';
+import 'package:strish/src/widgets/answer_page/reference_text.dart';
 
 class AnswerPage extends StatelessWidget {
-  AnswerPage({required this.image});
+  AnswerPage({required this.selectedImage});
 
-  final String image;
+  final String selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,7 @@ class AnswerPage extends StatelessWidget {
         return false;
       },
       child: Scaffold(
-        appBar: myAppBar(
-          context,
-        ),
+        appBar: AnswerPageAppBar(selectedImage: selectedImage),
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -49,9 +46,11 @@ class AnswerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     imageAvatar(),
-                    answerPicture(),
-                    reference(),
-                    continueButton(),
+                    TriviaAnswerPicture(selectedImage: selectedImage),
+                    ReferenceText(
+                      selectedImage: selectedImage,
+                    ),
+                    FlowGradientButton()
                   ],
                 ),
                 height: 450,
@@ -68,32 +67,17 @@ class AnswerPage extends StatelessWidget {
     );
   }
 
-  myAppBar(BuildContext context) {
-    return AppBar(
-      backgroundColor: kLightPurple,
-      elevation: 0.0,
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-          _myController.scoreLogic(image);
-          _myController.retrieveNextQuestion();
-        },
-        icon: Icon(Icons.arrow_back_ios),
-      ),
-    );
-  }
-
   Transform imageAvatar() {
     return Transform.translate(
       offset: Offset(0, -40),
       child: Hero(
-        tag: '$image',
+        tag: '$selectedImage',
         child: Container(
           height: 130,
           width: 140,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(image),
+              image: AssetImage(selectedImage),
               fit: BoxFit.cover,
             ),
             shape: BoxShape.circle,
@@ -103,52 +87,6 @@ class AnswerPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  answerPicture() {
-    return Container(
-      height: 142,
-      width: 150,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            _myController.retrieveImageAnswer(image),
-          ),
-          fit: BoxFit.fill,
-        ),
-      ),
-    );
-  }
-
-  reference() {
-    return RichText(
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: _myController.retrieveReference(image),
-            recognizer: _myController.launchReference(),
-            style: TextStyle(
-              decoration: TextDecoration.underline,
-              color: Colors.red,
-              fontSize: 30,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  continueButton() {
-    return Builder(
-      builder: (BuildContext context) => GradientButton(
-        buttonName: 'Continue',
-        onTapp: () {
-          Navigator.of(context).pop();
-
-          _myController.retrieveNextQuestion();
-        },
       ),
     );
   }
