@@ -59,7 +59,7 @@ class TriviaImageOptions extends StatelessWidget {
                           ),
                         );
 
-                        _myController.scoreLogic(imageOptions);
+                        _myController.incrementUserScore(imageOptions);
 
                         //To play sound on app only, not supported for web
                         // _myController.playSound(img);

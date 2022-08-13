@@ -20,7 +20,7 @@ class TriviaController extends GetxController {
 
   List retrieveOptions() => TriviaModel.trivia[_index.value].imageOptions;
 
-  void scoreLogic(selectedImage) {
+  void incrementUserScore(selectedImage) {
     if (selectedImage == retrieveAnswer()) {
       _score.value++;
     }
@@ -34,7 +34,7 @@ class TriviaController extends GetxController {
     }
   }
 
-  launchReference() {
+  launchReferenceUrl() {
     final url = Uri.parse(TriviaModel.trivia[_index.value].reference);
     return TapGestureRecognizer()
       ..onTap = () async {
@@ -65,7 +65,7 @@ class TriviaController extends GetxController {
     }
   }
 
-  void restart() {
+  void restartTrivia() {
     _index.value = 0;
     _score.value = 0;
   }

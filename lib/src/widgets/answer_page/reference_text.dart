@@ -20,7 +20,7 @@ class ReferenceText extends StatelessWidget {
             text: _triviaController.retrieveReference(
               selectedImage,
             ),
-            recognizer: _triviaController.launchReference(),
+            recognizer: _triviaController.launchReferenceUrl(),
             style: TextStyle(
               decoration: TextDecoration.underline,
               color: Colors.red,

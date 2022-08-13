@@ -63,7 +63,7 @@ class TriviaCompleteAlertDialog extends StatelessWidget {
                       ),
                     );
 
-                    _myController.restart();
+                    _myController.restartTrivia();
                   },
                 ),
                 SizedBox(
@@ -76,7 +76,7 @@ class TriviaCompleteAlertDialog extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) => WelcomePage()));
-                    _myController.restart();
+                    _myController.restartTrivia();
                   },
                 )
               ],

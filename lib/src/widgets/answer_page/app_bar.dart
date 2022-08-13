@@ -25,7 +25,7 @@ class AnswerPageAppBar extends StatelessWidget with PreferredSizeWidget {
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
-          _triviaController.scoreLogic(selectedImage);
+          _triviaController.incrementUserScore(selectedImage);
           _triviaController.retrieveNextQuestion();
         },
         icon: Icon(Icons.arrow_back_ios),
