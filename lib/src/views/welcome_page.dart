@@ -6,7 +6,7 @@ import 'package:strish/src/utils/constants.dart';
 class WelcomePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController welcomeControl = TextEditingController();
+  final TextEditingController welcomeTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
@@ -35,7 +35,7 @@ class WelcomePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      controller: welcomeControl,
+                      controller: welcomeTextController,
                       validator: (String? value) {
                         if (value!.isEmpty) {
                           return 'Kindly enter some text!';
@@ -63,12 +63,16 @@ class WelcomePage extends StatelessWidget {
                     fontSize: 20,
                     onTapp: () {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return Home(
-                            userName: getName(),
-                          );
-                        }));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return Home(
+                                userName: getName(),
+                              );
+                            },
+                          ),
+                        );
                       }
                     },
                   )
@@ -82,7 +86,7 @@ class WelcomePage extends StatelessWidget {
   }
 
   String getName() {
-    String control = welcomeControl.text;
-    return control;
+    String userNameText = welcomeTextController.text;
+    return userNameText;
   }
 }
