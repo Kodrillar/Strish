@@ -45,7 +45,7 @@ class AnswerPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    imageAvatar(),
+                    getImageAvatar(),
                     TriviaAnswerPicture(selectedImage: selectedImage),
                     ReferenceText(
                       selectedImage: selectedImage,
@@ -67,7 +67,7 @@ class AnswerPage extends StatelessWidget {
     );
   }
 
-  Transform imageAvatar() {
+  Transform getImageAvatar() {
     return Transform.translate(
       offset: Offset(0, -40),
       child: Hero(
