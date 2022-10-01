@@ -89,7 +89,7 @@ class HomeDrawer extends StatelessWidget {
                     logoName: 'assets/images/instagram.png',
                     onPressed: () {
                       _triviaController
-                          .openUrl('https://www.instagram.com/bonzerdave');
+                          .openUrl('https://www.instagram.com/Kodrillar');
                     },
                   )
                 ],
