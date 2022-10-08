@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:strish/src/utils/constants.dart';
 
@@ -11,9 +10,10 @@ class ReferencePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kLightPurple,
       appBar: ReferenceAppBar(),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
+      body: Container(
+        color: Colors.white,
         child: ListView(
           children: [
             HeroImageBox(),
@@ -46,7 +46,10 @@ class ReferenceBar extends StatelessWidget {
           child: Center(
             child: Text(
               name,
-              style: kTextStyle.copyWith(fontFamily: 'Days'),
+              style: kTextStyle.copyWith(
+                fontFamily: 'Days',
+                color: kLightPurple,
+              ),
             ),
           ),
         ),

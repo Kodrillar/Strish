@@ -1,4 +1,4 @@
-package com.example.strish
+package com.kodrillar.strish
 
 import io.flutter.embedding.android.FlutterActivity
 

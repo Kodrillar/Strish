@@ -13,7 +13,7 @@ class ReferenceAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       title: Text(
-        'References',
+        'Reference',
         style: kTextStyle,
       ),
       leading: Builder(
@@ -23,7 +23,7 @@ class ReferenceAppBar extends StatelessWidget with PreferredSizeWidget {
           },
           icon: Icon(
             Icons.arrow_back_ios,
-            color: kDeepPurple,
+            color: Colors.white,
           ),
           color: Colors.transparent,
         ),

@@ -1,12 +1,12 @@
-import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:strish/src/utils/constants.dart';
 import 'package:strish/src/widgets/home_page/circle_design.dart';
-import 'package:strish/src/widgets/home_page/drawer/home_drawer.dart';
 import 'package:strish/src/widgets/home_page/gradient_app_bar.dart';
 import 'package:strish/src/widgets/home_page/question/trivia_question_container.dart';
 import 'package:strish/src/widgets/home_page/trivia_image_options.dart';
 import 'package:strish/src/widgets/home_page/trivia_question_number_button.dart';
+
+import '../widgets/home_page/drawer/home_drawer.dart';
 
 class Home extends StatelessWidget {
   Home({required this.userName});
@@ -14,19 +14,21 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return WillPopScope(
       onWillPop: () async {
         return false;
       },
       child: Scaffold(
+        backgroundColor: kLightPurple,
         drawer: HomeDrawer(
           userName: userName,
         ),
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: Platform.isAndroid
-              ? SystemUiOverlayStyle.light
-              : SystemUiOverlayStyle.dark,
-          child: SafeArea(
+        body: SafeArea(
+          bottom: false,
+          child: Container(
+            color: Colors.white,
+            height: height,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -45,7 +47,7 @@ class Home extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: height * 0.05,
                   ),
                   TriviaImageOptions(
                     userName: userName,

@@ -12,10 +12,13 @@ class WelcomePage extends StatelessWidget {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: kLightPurple,
       body: SafeArea(
+        bottom: false,
         child: Container(
           height: _height,
           width: _width,
+          color: Colors.white,
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,

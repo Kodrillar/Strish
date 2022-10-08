@@ -15,7 +15,7 @@ const Gradient kGradient = LinearGradient(
 
 const kTextStyle = TextStyle(
   fontSize: 16,
-  color: kLightPurple,
+  color: Colors.white,
   fontFamily: 'Raleway',
 );
 
