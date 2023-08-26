@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
 
-class ReferenceAppBar extends StatelessWidget with PreferredSizeWidget {
+class ReferenceAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ReferenceAppBar({Key? key}) : super(key: key);
 
   @override

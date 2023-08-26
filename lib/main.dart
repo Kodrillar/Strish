@@ -25,7 +25,7 @@ void main() {
         color: kErrorColor,
         child: Center(
           child: Text(
-            errorDetails.toString(),
+            'Client Error! Restart App',
           ),
         ),
       );

@@ -6,7 +6,7 @@ import '../../utils/constants.dart';
 
 TriviaController _triviaController = Get.put(TriviaController());
 
-class AnswerPageAppBar extends StatelessWidget with PreferredSizeWidget {
+class AnswerPageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AnswerPageAppBar({
     Key? key,
     required this.selectedImage,
