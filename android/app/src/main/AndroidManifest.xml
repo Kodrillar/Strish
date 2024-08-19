@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kodrillar.strish">
+
+     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Strish"
         android:icon="@mipmap/appicon">

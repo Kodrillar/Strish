@@ -16,7 +16,7 @@ class DrawerText extends StatelessWidget {
           child: ListTile(
             title: Text(
               text!,
-              style: kTextStyle,
+              style: kTextStyle.copyWith(color: kLightPurple),
             ),
             leading: Container(
               height: 35,

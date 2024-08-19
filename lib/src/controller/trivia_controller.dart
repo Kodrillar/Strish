@@ -1,14 +1,14 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:strish/src/model/trivia_vault_model.dart';
 import 'package:get/get.dart';
-import 'package:audioplayers/audio_cache.dart';
 
 class TriviaController extends GetxController {
   var _index = RxInt(0);
   var _score = RxInt(0);
 
-  final _audioPlayer = AudioCache();
+  final _audioPlayer = AudioPlayer();
 
   int get userScore => _score.value;
 
@@ -28,9 +28,9 @@ class TriviaController extends GetxController {
 
   playSound(selectedImage) {
     if (selectedImage == retrieveAnswer()) {
-      return _audioPlayer.play('correct.mp3');
+      return _audioPlayer.play(AssetSource('correct.mp3'));
     } else {
-      return _audioPlayer.play('fail.mp3');
+      return _audioPlayer.play(AssetSource('fail.mp3'));
     }
   }
 

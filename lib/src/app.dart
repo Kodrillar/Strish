@@ -10,11 +10,11 @@ class StrishApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         textTheme: TextTheme(
-          bodyText2: TextStyle(
+          bodyMedium: TextStyle(
             fontFamily: 'Raleway',
             color: Colors.white,
           ),
-          bodyText1: TextStyle(
+          bodyLarge: TextStyle(
             fontFamily: 'Raleway',
           ),
         ),

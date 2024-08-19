@@ -3,7 +3,7 @@ description: A Trivia App.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.1+5
+version: 1.0.1+6
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   url_launcher: ^6.0.3
-  audioplayers: ^0.18.3
+  audioplayers: ^5.2.0
 
 dev_dependencies:
   flutter_test:
