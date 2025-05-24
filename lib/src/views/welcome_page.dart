@@ -49,6 +49,7 @@ class WelcomePage extends StatelessWidget {
                         } else
                           return null;
                       },
+                      autofocus: true,
                       decoration: InputDecoration(
                         labelText: 'Name',
                         labelStyle: kTextStyle.copyWith(color: kDeepPurple),
